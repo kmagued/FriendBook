@@ -1,19 +1,100 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import firebase from "@firebase/app";
+import "@firebase/firestore";
+import React from "react";
+import { View, Text, ActivityIndicator, StatusBar, Image } from "react-native";
+import Navigator from "./navigation/Navigator";
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import usersReducer from "./store/reducers/users";
+import postReducer from "./store/reducers/post";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
+import Colors from "./constants/Colors";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+const baseConfig = {
+  apiKey: "AIzaSyD7vz8QVyiLrvZNwTo_wV-sYea0lwfqlC4",
+  projectId: "friendbook-64688",
+  storageBucket: "friendbook-64688.appspot.com",
+  databaseURL: "https://friendbook-64688.firebaseio.com",
+};
+
+firebase.initializeApp(baseConfig);
+var db = firebase.firestore();
+
+// db.collection("users")
+//   .doc()
+//   .set({
+//     name: "Khaled",
+//     username: "Khokha",
+//   })
+//   .then(() => {
+//     console.log("Document written successfully");
+//   });
+
+// db.collection("users")
+//   .get()
+//   .then((snapshot) => {
+//     snapshot.docs.forEach((doc) => {
+//       console.log(doc.data());
+//     });
+//   });
+
+const rootReducer = combineReducers({
+  users: usersReducer,
+  post: postReducer,
+});
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+class App extends React.Component {
+  state = { loading: false };
+
+  componentDidMount() {
+    StatusBar.setBarStyle("dark-content");
+    this.setState({ loading: true });
+    setTimeout(() => {
+      this.setState({ loading: false });
+    }, 5000);
+  }
+  render() {
+    return this.state.loading ? (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: Colors.primaryColor,
+        }}
+      >
+        <Text
+          style={{
+            color: "white",
+            fontWeight: "bold",
+            fontSize: 50,
+          }}
+        >
+          FriendBook
+        </Text>
+        <Image
+          source={{
+            uri: "https://media.giphy.com/media/VseXvvxwowwCc/source.gif",
+          }}
+          style={{
+            width: 100,
+            height: 100,
+          }}
+        />
+        {/* <ActivityIndicator
+          size="large"
+          style={{ marginTop: 10 }}
+          color="white"
+        /> */}
+      </View>
+    ) : (
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
+    );
+  }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
