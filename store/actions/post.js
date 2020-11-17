@@ -8,7 +8,7 @@ export const UPDATE_POST = "UPDATE_POST";
 export const fetchPosts = () => {
   return async (dispatch) => {
     const response = await fetch(
-      "https://friendbook-64688.firebaseio.com/posts.json"
+      "https://friendbook-e6115.firebaseio.com/posts.json"
     );
 
     const resData = await response.json();
@@ -56,7 +56,7 @@ var time = today.getDate() + " " + months[today.getMonth()];
 export const addPost = (userId, content, image) => {
   return async (dispatch) => {
     const response = await fetch(
-      "https://friendbook-64688.firebaseio.com/posts.json",
+      "https://friendbook-e6115.firebaseio.com/posts.json",
       {
         method: "POST",
         headers: {
@@ -95,7 +95,7 @@ export const addPost = (userId, content, image) => {
 export const updatePost = (postId, likes, comments, shares) => {
   return async (dispatch) => {
     await fetch(
-      `https://friendbook-64688.firebaseio.com/posts/${postId}.json`,
+      `https://friendbook-e6115.firebaseio.com/posts/${postId}.json`,
       {
         method: "PATCH",
         headers: {

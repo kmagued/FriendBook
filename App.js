@@ -1,7 +1,7 @@
 import firebase from "@firebase/app";
 import "@firebase/firestore";
 import React from "react";
-import { View, Text, ActivityIndicator, StatusBar, Image } from "react-native";
+import { View, Text, ActivityIndicator, StatusBar } from "react-native";
 import Navigator from "./navigation/Navigator";
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import usersReducer from "./store/reducers/users";
@@ -14,29 +14,10 @@ const baseConfig = {
   apiKey: "AIzaSyD7vz8QVyiLrvZNwTo_wV-sYea0lwfqlC4",
   projectId: "friendbook-64688",
   storageBucket: "friendbook-64688.appspot.com",
-  databaseURL: "https://friendbook-64688.firebaseio.com",
+  databaseURL: "https://friendbook-e6115.firebaseio.com",
 };
 
 firebase.initializeApp(baseConfig);
-var db = firebase.firestore();
-
-// db.collection("users")
-//   .doc()
-//   .set({
-//     name: "Khaled",
-//     username: "Khokha",
-//   })
-//   .then(() => {
-//     console.log("Document written successfully");
-//   });
-
-// db.collection("users")
-//   .get()
-//   .then((snapshot) => {
-//     snapshot.docs.forEach((doc) => {
-//       console.log(doc.data());
-//     });
-//   });
 
 const rootReducer = combineReducers({
   users: usersReducer,
@@ -74,20 +55,11 @@ class App extends React.Component {
         >
           FriendBook
         </Text>
-        <Image
-          source={{
-            uri: "https://media.giphy.com/media/VseXvvxwowwCc/source.gif",
-          }}
-          style={{
-            width: 100,
-            height: 100,
-          }}
-        />
-        {/* <ActivityIndicator
+        <ActivityIndicator
           size="large"
           style={{ marginTop: 10 }}
           color="white"
-        /> */}
+        />
       </View>
     ) : (
       <Provider store={store}>

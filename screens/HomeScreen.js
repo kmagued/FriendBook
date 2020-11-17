@@ -98,7 +98,7 @@ class HomeScreen extends React.Component {
         });
     } else {
       this.props
-        .add(user.id, this.state.content, this.state.pickedImage)
+        .add(this.props.user.id, this.state.content, this.state.pickedImage)
         .then(() => {
           console.log("Post added");
           this.setState({

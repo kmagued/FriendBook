@@ -18,8 +18,8 @@ import { login, fetchUsers } from "../store/actions/users";
 
 class LoginScreen extends React.Component {
   state = {
-    username: "Khokha",
-    password: "Bale123e",
+    username: "",
+    password: "",
     loggedIn: true,
     loading: false,
     errorMessage: "",

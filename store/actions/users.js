@@ -11,7 +11,7 @@ export const SEARCH_USERS = "SEARCH_USERS";
 export const fetchUsers = () => {
   return async (dispatch) => {
     const response = await fetch(
-      "https://friendbook-64688.firebaseio.com/users.json"
+      "https://friendbook-e6115.firebaseio.com/users.json"
     );
 
     if (!response.ok) {
@@ -72,7 +72,7 @@ export const createUser = (
 ) => {
   return async (dispatch) => {
     const response = await fetch(
-      "https://friendbook-64688.firebaseio.com/users.json",
+      "https://friendbook-e6115.firebaseio.com/users.json",
       {
         method: "POST",
         headers: {
