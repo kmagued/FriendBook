@@ -12,9 +12,9 @@ import Colors from "./constants/Colors";
 
 const baseConfig = {
   apiKey: process.env.API_KEY,
-  projectId: "friendbook-64688",
-  storageBucket: "friendbook-64688.appspot.com",
-  databaseURL: "https://friendbook-e6115.firebaseio.com",
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  databaseURL: process.env.DATABASE_URL,
 };
 
 firebase.initializeApp(baseConfig);
