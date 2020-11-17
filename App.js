@@ -11,7 +11,7 @@ import thunk from "redux-thunk";
 import Colors from "./constants/Colors";
 
 const baseConfig = {
-  apiKey: "AIzaSyD7vz8QVyiLrvZNwTo_wV-sYea0lwfqlC4",
+  apiKey: process.env.API_KEY,
   projectId: "friendbook-64688",
   storageBucket: "friendbook-64688.appspot.com",
   databaseURL: "https://friendbook-e6115.firebaseio.com",
